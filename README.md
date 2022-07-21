@@ -18,7 +18,7 @@ Make sure that your GOPATH/bin it's defined into yout PATH environment variable.
 
 ### Linux User
 
-*Maybe you shouldn't* use this application because I haven't tested it enough :)
+*Maybe you shouldn't* use this application because I haven't tested it enough for your OS :)
 
 ## How to use:
 
