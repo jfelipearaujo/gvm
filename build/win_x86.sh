@@ -1,0 +1,1 @@
+GOOS=windows GOARCH=386 go build -o ./output/gvm-1_0_0.windows-x86.exe ../main.go
