@@ -1,0 +1,1 @@
+GOOS=linux GOARCH=386 go build -tags linux -o ./output/gvm-1_0_0.linux-x86 ../main.go
