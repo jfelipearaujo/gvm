@@ -71,6 +71,12 @@ func SetGoRoot(newGoRoot string) error {
 	return err
 }
 
+func SetGoPath(newGoPath string) error {
+	err := setUserEnvironmentVariable("GOPATH", newGoPath)
+
+	return err
+}
+
 func SetGoCurrentVersion(newGoVersion string) error {
 	err := setUserEnvironmentVariable("GVM_CURRENT_GO_VERSION", newGoVersion)
 
