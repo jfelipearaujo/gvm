@@ -22,13 +22,14 @@ Make sure that your GOPATH/bin it's defined into yout PATH environment variable.
 
 ## How to use:
 
-Before anything else, you must download the correct version (x64/x86) for your windows, see the [release](https://github.com/jfelipearaujo/gvm/releases) page.
+Before anything else, you must download the correct version (x64/x86) for your system, see the [release](https://github.com/jfelipearaujo/gvm/releases) page.
 
 Download the zip file, extract all the content in some folder.
 
 Example:
 
 ```
+# on Windows
 C:\Users\{userName}\.gvm\bin\
 ```
 
