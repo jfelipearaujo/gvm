@@ -1,4 +1,4 @@
-# GVM - Go Version Manager for Windows
+# GVM - Go Version Manager
 
 This application can manage multiple golang installations.
 
