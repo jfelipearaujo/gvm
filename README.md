@@ -12,11 +12,15 @@ Make sure that your GOPATH/bin it's defined into yout PATH environment variable.
 
 ## ATTENTION:
 
-If you are using OSX, *DO NOT USE* this application as the necessary locks for this OS have not been implemented.
+### OSX Users
 
-If you are using Linux, *maybe you shouldn't* use this application because I haven't tested it enough :)
+*DO NOT USE* this application as the necessary locks for this OS have not been implemented.
 
-How to use:
+### Linux User
+
+*Maybe you shouldn't* use this application because I haven't tested it enough :)
+
+## How to use:
 
 Before anything else, you must download the correct version (x64/x86) for your windows, see the [release](https://github.com/jfelipearaujo/gvm/releases) page.
 
