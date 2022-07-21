@@ -91,7 +91,7 @@ gvm use <version>
 
 ## Setup GOPATH environment variable
 
-This will define the GOPATH as the default one (C:\{userName}\go)
+This will define the GOPATH as the default one (C:\\{userName}\\go)
 
 ```
 gvm go-path
