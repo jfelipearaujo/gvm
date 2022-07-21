@@ -1,10 +1,11 @@
 package commands
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
-	"strings"
+	"runtime"
 
 	"github.com/jfelipearaujo/gvm/helpers"
 )
@@ -16,13 +17,11 @@ type InstallCommand struct {
 func (command *InstallCommand) Run() error {
 	log.Println("Installing golang...")
 
-	osArch := strings.ToLower(os.Getenv("PROCESSOR_ARCHITECTURE"))
-
-	if osArch == "x86" {
-		osArch = "386"
+	if runtime.GOOS != "windows" {
+		return fmt.Errorf("%s is not a supported platform", runtime.GOOS)
 	}
 
-	zipFileDir, err := helpers.DownloadGoLang(command.Version, "windows", osArch)
+	zipFileDir, err := helpers.DownloadGoLang(command.Version, runtime.GOOS, runtime.GOARCH)
 
 	if err != nil {
 		return err
