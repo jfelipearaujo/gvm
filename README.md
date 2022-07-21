@@ -12,7 +12,9 @@ Make sure that your GOPATH/bin it's defined into yout PATH environment variable.
 
 ## ATTENTION:
 
-If you use OSX or Linux, you SHOULD NOT be using this application.
+If you are using OSX, *DO NOT USE* this application as the necessary locks for this OS have not been implemented.
+
+If you are using Linux, *maybe you shouldn't* use this application because I haven't tested it enough :)
 
 How to use:
 
