@@ -2,6 +2,12 @@
 
 This application can manage multiple golang installations.
 
+If you already have Go installed, just run the command bellow:
+
+```
+go install github.com/jfelipearaujo/gvm@latest
+```
+
 ## ATTENTION:
 
 If you use OSX or Linux, you SHOULD NOT be using this application.
