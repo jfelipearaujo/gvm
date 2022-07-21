@@ -10,7 +10,7 @@ import (
 )
 
 type InstallCommand struct {
-	Version string `arg required short:"v" help:"A valid version of Go Lang"`
+	Version string `arg:"" required:"" short:"v" help:"A valid version of Go Lang"`
 }
 
 func (command *InstallCommand) Run() error {

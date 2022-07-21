@@ -9,7 +9,7 @@ import (
 )
 
 type UninstallCommand struct {
-	Version string `arg required short:"v" help:"An installed version of Go Lang"`
+	Version string `arg:"" required:"" short:"v" help:"An installed version of Go Lang"`
 }
 
 func (command *UninstallCommand) Run() error {
