@@ -1,0 +1,1 @@
+GOOS=darwin GOARCH=amd64 go build -tags darwin -o ./output/gvm-1_0_0.darwin-x64 ../main.go
