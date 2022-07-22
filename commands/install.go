@@ -81,6 +81,12 @@ func (command *InstallCommand) Run() error {
 		return err
 	}
 
+	err = helpers.SetGoCurrentVersion(command.Version)
+
+	if err != nil {
+		return err
+	}
+
 	currentGoPath, err := helpers.GetValueFromVariable("GOPATH")
 
 	if err != nil {
@@ -101,9 +107,13 @@ func (command *InstallCommand) Run() error {
 		return err
 	}
 
-	currentGoRoot = filepath.Join(currentGoRoot, "bin")
+	currentGoRoot = filepath.Join(currentGoRoot, "bin", "x")
+	currentGoRoot = currentGoRoot[:len(currentGoRoot)-1]
 
-	err = helpers.UpdatePath(currentGoRoot, filepath.Join(destination, "go", "bin"))
+	newGoRootBinPath := filepath.Join(destination, "go", "bin", "x")
+	newGoRootBinPath = newGoRootBinPath[:len(newGoRootBinPath)-1]
+
+	err = helpers.UpdatePath(currentGoRoot, newGoRootBinPath)
 
 	if err != nil {
 		return err

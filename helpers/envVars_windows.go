@@ -1,6 +1,7 @@
 package helpers
 
 import (
+	"os"
 	"strings"
 
 	"golang.org/x/sys/windows/registry"
@@ -91,6 +92,16 @@ func SetGoRoot(newGoRoot string) error {
 
 func SetGoPath(newGoPath string) error {
 	err := setUserEnvironmentVariable("GOPATH", newGoPath)
+
+	return err
+}
+
+func GetGoCurrentVersion() string {
+	return os.Getenv("GVM_CURRENT_GO_VERSION")
+}
+
+func SetGoCurrentVersion(newGoVersion string) error {
+	err := setUserEnvironmentVariable("GVM_CURRENT_GO_VERSION", newGoVersion)
 
 	return err
 }

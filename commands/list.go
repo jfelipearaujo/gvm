@@ -6,15 +6,15 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-	"runtime"
-	"strings"
+
+	"github.com/jfelipearaujo/gvm/helpers"
 )
 
 type ListCommand struct {
 }
 
 func (command *ListCommand) Run() error {
-	goCurrentVersion := strings.Replace(runtime.Version(), "go", "", 1)
+	goCurrentVersion := helpers.GetGoCurrentVersion()
 
 	log.Printf("Current version: %s\n", goCurrentVersion)
 

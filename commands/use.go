@@ -56,7 +56,9 @@ func (command *UseCommand) Run() error {
 		return err
 	}
 
-	previousGoRootBinPath = filepath.Join(previousGoRootBinPath, "bin")
+	previousGoRootBinPath = filepath.Join(previousGoRootBinPath, "bin", "x")
+
+	previousGoRootBinPath = previousGoRootBinPath[:len(previousGoRootBinPath)-1]
 
 	log.Printf("Previous GOROOT: %v\n", previousGoRootBinPath)
 
@@ -68,7 +70,15 @@ func (command *UseCommand) Run() error {
 		return err
 	}
 
-	newGoRootBinPath := filepath.Join(versions, command.Version, "go", "bin")
+	err = helpers.SetGoCurrentVersion(command.Version)
+
+	if err != nil {
+		return err
+	}
+
+	newGoRootBinPath := filepath.Join(versions, command.Version, "go", "bin", "x")
+
+	newGoRootBinPath = newGoRootBinPath[:len(newGoRootBinPath)-1]
 
 	log.Printf("New GOROOT: %v\n", newGoRootBinPath)
 
