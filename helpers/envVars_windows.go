@@ -95,12 +95,6 @@ func SetGoPath(newGoPath string) error {
 	return err
 }
 
-func SetGoCurrentVersion(newGoVersion string) error {
-	err := setUserEnvironmentVariable("GVM_CURRENT_GO_VERSION", newGoVersion)
-
-	return err
-}
-
 func UpdatePath(oldValue string, newValue string) error {
 	err := updatePathUserEnvironmentVariable(oldValue, newValue)
 

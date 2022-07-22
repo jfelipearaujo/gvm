@@ -68,12 +68,6 @@ func (command *UseCommand) Run() error {
 		return err
 	}
 
-	err = helpers.SetGoCurrentVersion(command.Version)
-
-	if err != nil {
-		return err
-	}
-
 	newGoRootBinPath := filepath.Join(versions, command.Version, "go", "bin")
 
 	log.Printf("New GOROOT: %v\n", newGoRootBinPath)

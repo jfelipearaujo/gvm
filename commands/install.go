@@ -81,12 +81,6 @@ func (command *InstallCommand) Run() error {
 		return err
 	}
 
-	err = helpers.SetGoCurrentVersion(command.Version)
-
-	if err != nil {
-		return err
-	}
-
 	currentGoPath, err := helpers.GetValueFromVariable("GOPATH")
 
 	if err != nil {

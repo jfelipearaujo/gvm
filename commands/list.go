@@ -6,21 +6,17 @@ import (
 	"log"
 	"os"
 	"path/filepath"
-
-	"github.com/jfelipearaujo/gvm/helpers"
+	"runtime"
+	"strings"
 )
 
 type ListCommand struct {
 }
 
 func (command *ListCommand) Run() error {
-	log.Println("Listing installed versions...")
+	goCurrentVersion := strings.Replace(runtime.Version(), "go", "", 1)
 
-	goCurrentVersion, err := helpers.GetValueFromVariable("GVM_CURRENT_GO_VERSION")
-
-	if err != nil {
-		return err
-	}
+	log.Printf("Current version: %s\n", goCurrentVersion)
 
 	homeDir, err := os.UserHomeDir()
 
@@ -36,13 +32,11 @@ func (command *ListCommand) Run() error {
 		return err
 	}
 
+	log.Println("Installed versions:")
+
 	for _, dir := range dirs {
 		if dir.IsDir() {
-			if goCurrentVersion == dir.Name() {
-				fmt.Printf("- %s\tCURRENT VERSION\n", dir.Name())
-			} else {
-				fmt.Printf("- %s\n", dir.Name())
-			}
+			fmt.Printf("- %s\n", dir.Name())
 		}
 	}
 

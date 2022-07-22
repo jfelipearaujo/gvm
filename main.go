@@ -42,7 +42,7 @@ func main() {
 			Compact: true,
 		}),
 		kong.Vars{
-			"version": "1.0.1",
+			"version": "1.0.2",
 		})
 	err := ctx.Run(&cli.Globals)
 	ctx.FatalIfErrorf(err)

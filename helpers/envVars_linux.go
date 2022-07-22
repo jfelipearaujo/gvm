@@ -49,12 +49,6 @@ func SetGoPath(newGoPath string) error {
 	return err
 }
 
-func SetGoCurrentVersion(newGoVersion string) error {
-	err := os.Setenv("GVM_CURRENT_GO_VERSION", newGoVersion)
-
-	return err
-}
-
 func UpdatePath(newValue string) error {
 	goRoot := os.Getenv("GOROOT")
 
