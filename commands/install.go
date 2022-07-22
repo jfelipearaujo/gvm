@@ -87,15 +87,37 @@ func (command *InstallCommand) Run() error {
 		return err
 	}
 
-	err = helpers.UpdatePath(filepath.Join(destination, "go", "bin"))
+	currentGoPath, err := helpers.GetValueFromVariable("GOPATH")
+
+	if err != nil {
+		return err
+	}
+
+	currentGoPath = filepath.Join(currentGoPath, "bin")
+
+	err = helpers.UpdatePath(currentGoPath, filepath.Join(homeDir, "go", "bin"))
+
+	if err != nil {
+		return err
+	}
+
+	currentGoRoot, err := helpers.GetValueFromVariable("GOROOT")
+
+	if err != nil {
+		return err
+	}
+
+	currentGoRoot = filepath.Join(currentGoRoot, "bin")
+
+	err = helpers.UpdatePath(currentGoRoot, filepath.Join(destination, "go", "bin"))
 
 	if err != nil {
 		return err
 	}
 
 	log.Println("Environment variables updated successfully")
-
 	log.Println("Installation completed successfully")
+	log.Println("Done! Open a new prompt and type 'go version' to see the changes :)")
 
 	return nil
 }

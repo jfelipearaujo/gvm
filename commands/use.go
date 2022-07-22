@@ -25,6 +25,10 @@ func (command *UseCommand) Run() error {
 
 	versions := filepath.Join(homeDir, ".gvm", "versions")
 
+	if _, err := os.Stat(versions); os.IsNotExist(err) {
+		return fmt.Errorf("gvm directory does not exist. Please run command 'gvm install %v' and try again", command.Version)
+	}
+
 	dirs, err := ioutil.ReadDir(versions)
 
 	if err != nil {
@@ -46,9 +50,19 @@ func (command *UseCommand) Run() error {
 		return fmt.Errorf("version %v does not exist, please run the install command and try again", command.Version)
 	}
 
+	previousGoRootBinPath, err := helpers.GetValueFromVariable("GOROOT")
+
+	if err != nil {
+		return err
+	}
+
+	previousGoRootBinPath = filepath.Join(previousGoRootBinPath, "bin")
+
+	log.Printf("Previous GOROOT: %v\n", previousGoRootBinPath)
+
 	log.Println("Updating environment variables...")
 
-	err = helpers.SetGoRoot(filepath.Join(versions, command.Version, "go", string(os.PathSeparator), ""))
+	err = helpers.SetGoRoot(filepath.Join(versions, command.Version, "go"))
 
 	if err != nil {
 		return err
@@ -60,7 +74,11 @@ func (command *UseCommand) Run() error {
 		return err
 	}
 
-	err = helpers.UpdatePath(filepath.Join(versions, command.Version, "go", "bin", string(os.PathSeparator), ""))
+	newGoRootBinPath := filepath.Join(versions, command.Version, "go", "bin")
+
+	log.Printf("New GOROOT: %v\n", newGoRootBinPath)
+
+	err = helpers.UpdatePath(previousGoRootBinPath, newGoRootBinPath)
 
 	if err != nil {
 		return err

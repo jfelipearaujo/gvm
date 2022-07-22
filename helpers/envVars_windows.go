@@ -1,8 +1,6 @@
 package helpers
 
 import (
-	"os"
-	"path/filepath"
 	"strings"
 
 	"golang.org/x/sys/windows/registry"
@@ -65,6 +63,26 @@ func updatePathUserEnvironmentVariable(oldValue string, newValue string) error {
 	return nil
 }
 
+func GetValueFromVariable(name string) (string, error) {
+	regplace := registry.CURRENT_USER
+
+	key, err := registry.OpenKey(regplace, "Environment", registry.ALL_ACCESS)
+
+	if err != nil {
+		return "", err
+	}
+
+	defer key.Close()
+
+	currentValue, _, err := key.GetStringValue(name)
+
+	if err != nil {
+		return "", err
+	}
+
+	return currentValue, nil
+}
+
 func SetGoRoot(newGoRoot string) error {
 	err := setUserEnvironmentVariable("GOROOT", newGoRoot)
 
@@ -83,10 +101,8 @@ func SetGoCurrentVersion(newGoVersion string) error {
 	return err
 }
 
-func UpdatePath(newValue string) error {
-	goRoot := os.Getenv("GOROOT")
-
-	err := updatePathUserEnvironmentVariable(filepath.Join(goRoot, "bin", string(os.PathSeparator), ""), newValue)
+func UpdatePath(oldValue string, newValue string) error {
+	err := updatePathUserEnvironmentVariable(oldValue, newValue)
 
 	return err
 }

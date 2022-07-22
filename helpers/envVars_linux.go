@@ -33,6 +33,10 @@ func updatePathUserEnvironmentVariable(oldValue string, newValue string) error {
 	return nil
 }
 
+func GetValueFromVariable(name string) (string, error) {
+	return os.Getenv(name)
+}
+
 func SetGoRoot(newGoRoot string) error {
 	err := os.Setenv("GOROOT", newGoRoot)
 

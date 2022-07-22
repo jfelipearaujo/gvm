@@ -62,6 +62,20 @@ func (command *GoPathCommand) Run() error {
 		return err
 	}
 
+	currentGoPath, err := helpers.GetValueFromVariable("GOPATH")
+
+	if err != nil {
+		return err
+	}
+
+	currentGoPath = filepath.Join(currentGoPath, "bin")
+
+	err = helpers.UpdatePath(currentGoPath, filepath.Join(command.Folder, "bin"))
+
+	if err != nil {
+		return err
+	}
+
 	log.Println("GoPath setup completed")
 
 	return nil

@@ -6,6 +6,8 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+
+	"github.com/jfelipearaujo/gvm/helpers"
 )
 
 type UninstallCommand struct {
@@ -15,8 +17,11 @@ type UninstallCommand struct {
 func (command *UninstallCommand) Run() error {
 	log.Printf("Uninstalling go version %s...\n", command.Version)
 
-	goCurrentVersion := os.Getenv("GVM_CURRENT_GO_VERSION")
+	goCurrentVersion, err := helpers.GetValueFromVariable("GVM_CURRENT_GO_VERSION")
 
+	if err != nil {
+		return err
+	}
 	if goCurrentVersion == command.Version {
 		return fmt.Errorf("you can't uninstall your current version")
 	}

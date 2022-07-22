@@ -6,6 +6,8 @@ import (
 	"log"
 	"os"
 	"path/filepath"
+
+	"github.com/jfelipearaujo/gvm/helpers"
 )
 
 type ListCommand struct {
@@ -14,7 +16,11 @@ type ListCommand struct {
 func (command *ListCommand) Run() error {
 	log.Println("Listing installed versions...")
 
-	goCurrentVersion := os.Getenv("GVM_CURRENT_GO_VERSION")
+	goCurrentVersion, err := helpers.GetValueFromVariable("GVM_CURRENT_GO_VERSION")
+
+	if err != nil {
+		return err
+	}
 
 	homeDir, err := os.UserHomeDir()
 
