@@ -16,7 +16,7 @@ Make sure that your GOPATH/bin it's defined into yout PATH environment variable.
 
 *DO NOT USE* this application as the necessary locks for this OS have not been implemented.
 
-### Linux User
+### Linux Users
 
 *Maybe you shouldn't* use this application because I haven't tested it enough for your OS :)
 
