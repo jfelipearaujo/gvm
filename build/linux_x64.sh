@@ -1,1 +1,1 @@
-GOOS=linux GOARCH=amd64 go build -tags linux -o ./output/gvm-1_0_0.linux-x64 ../main.go
+GOOS=linux GOARCH=amd64 go build -tags linux -o ./output/gvm-1_0_1.linux-x64 ../main.go

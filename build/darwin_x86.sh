@@ -1,1 +1,1 @@
-GOOS=darwin GOARCH=386 go build -tags darwin -o ./output/gvm-1_0_0.darwin-x86 ../main.go
+GOOS=darwin GOARCH=386 go build -tags darwin -o ./output/gvm-1_0_1.darwin-x86 ../main.go
