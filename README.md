@@ -10,12 +10,6 @@ go install github.com/jfelipearaujo/gvm@latest
 
 Make sure that your GOPATH/bin it's defined into yout PATH environment variable.
 
-## ATTENTION:
-
-### OSX and Linux Users
-
-*Maybe you shouldn't* use this application because I haven't tested it enough for your OS :).
-
 Feel free to contribute if you want.
 
 ## How to use:
