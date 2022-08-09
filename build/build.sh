@@ -1,6 +1,6 @@
 #!/bin/bash
 
-VER="1_0_3"
+VER="1_0_4"
 
 echo "Building version: $VER"
 

@@ -107,11 +107,9 @@ func (command *InstallCommand) Run() error {
 		return err
 	}
 
-	currentGoRoot = filepath.Join(currentGoRoot, "bin", "x")
-	currentGoRoot = currentGoRoot[:len(currentGoRoot)-1]
+	currentGoRoot = filepath.Join(currentGoRoot, "bin")
 
-	newGoRootBinPath := filepath.Join(destination, "go", "bin", "x")
-	newGoRootBinPath = newGoRootBinPath[:len(newGoRootBinPath)-1]
+	newGoRootBinPath := filepath.Join(destination, "go", "bin")
 
 	err = helpers.UpdatePath(currentGoRoot, newGoRootBinPath)
 

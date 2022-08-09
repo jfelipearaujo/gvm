@@ -4,41 +4,20 @@ import (
 	"os"
 	"strings"
 
-	"golang.org/x/sys/windows/registry"
+	penv "github.com/badgerodon/penv"
 )
 
 func setUserEnvironmentVariable(name string, value string) error {
-	regplace := registry.CURRENT_USER
-
-	key, err := registry.OpenKey(regplace, "Environment", registry.ALL_ACCESS)
+	err := penv.SetEnv(name, value)
 
 	if err != nil {
 		return err
 	}
-
-	defer key.Close()
-
-	err = key.SetStringValue(name, value)
-
 	return err
 }
 
 func updatePathUserEnvironmentVariable(oldValue string, newValue string) error {
-	regplace := registry.CURRENT_USER
-
-	key, err := registry.OpenKey(regplace, "Environment", registry.ALL_ACCESS)
-
-	if err != nil {
-		return err
-	}
-
-	defer key.Close()
-
-	currentValue, _, err := key.GetStringValue("PATH")
-
-	if err != nil {
-		return err
-	}
+	currentValue := os.Getenv("PATH")
 
 	pathValues := strings.Split(currentValue, ";")
 
@@ -55,7 +34,7 @@ func updatePathUserEnvironmentVariable(oldValue string, newValue string) error {
 	currentValue = strings.Join(pathValues, ";")
 	currentValue = currentValue + ";" + newValue
 
-	err = key.SetStringValue("PATH", currentValue)
+	err := penv.SetEnv("PATH", currentValue)
 
 	if err != nil {
 		return err
@@ -65,21 +44,7 @@ func updatePathUserEnvironmentVariable(oldValue string, newValue string) error {
 }
 
 func GetValueFromVariable(name string) (string, error) {
-	regplace := registry.CURRENT_USER
-
-	key, err := registry.OpenKey(regplace, "Environment", registry.ALL_ACCESS)
-
-	if err != nil {
-		return "", err
-	}
-
-	defer key.Close()
-
-	currentValue, _, err := key.GetStringValue(name)
-
-	if err != nil {
-		return "", err
-	}
+	currentValue := os.Getenv(name)
 
 	return currentValue, nil
 }
